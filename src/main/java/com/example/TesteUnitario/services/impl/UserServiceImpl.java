@@ -11,6 +11,7 @@ import com.example.TesteUnitario.Repositories.UserRepository;
 import com.example.TesteUnitario.domain.User;
 import com.example.TesteUnitario.domain.dto.UserDTO;
 import com.example.TesteUnitario.services.UserService;
+import com.example.TesteUnitario.services.exceptions.DataIntegratyViolationException;
 import com.example.TesteUnitario.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -34,7 +35,15 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User create(UserDTO obj) {
+		findByEmail(obj);
 		return repository.save(mapper.map(obj, User.class));
+	}
+	
+	private void findByEmail(UserDTO obj) {
+		Optional<User> user = repository.findByEmail(obj.getEmail());
+		if(user.isPresent()) {
+			throw new DataIntegratyViolationException("E-mail já cadastrado no sistema");
+		}
 	}
 
 }
