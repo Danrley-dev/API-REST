@@ -1,7 +1,5 @@
 package com.example.TesteUnitario.domain.dto;
 
-import javax.persistence.Column;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -17,6 +15,7 @@ public class UserDTO {
 	private Integer id;
 	private String name;
 	private String email;
+	
 	@JsonIgnore
 	private String password;
 }
