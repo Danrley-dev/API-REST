@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.TesteUnitario.domain.User;
 import com.example.TesteUnitario.domain.dto.UserDTO;
 import com.example.TesteUnitario.services.UserService;
 
