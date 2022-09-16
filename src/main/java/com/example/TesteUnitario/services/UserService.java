@@ -8,8 +8,7 @@ import com.example.TesteUnitario.domain.dto.UserDTO;
 public interface UserService {
 	
 	User findById(Integer id);
-
 	List<User> findAll();	
-	
 	User create(UserDTO obj);
+	User update(UserDTO obj);
 }
