@@ -8,9 +8,7 @@ import lombok.Setter;
 
 @AllArgsConstructor
 @Getter
-@Setter
 public class StandardError {
-
 
 	private LocalDateTime timeStamp;
 	private Integer status;
