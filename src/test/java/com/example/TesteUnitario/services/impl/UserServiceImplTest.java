@@ -3,6 +3,7 @@ package com.example.TesteUnitario.services.impl;
 import com.example.TesteUnitario.Repositories.UserRepository;
 import com.example.TesteUnitario.domain.User;
 import com.example.TesteUnitario.domain.dto.UserDTO;
+import com.example.TesteUnitario.services.exceptions.ObjectNotFoundException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -57,6 +58,18 @@ class UserServiceImplTest {
         assertEquals(ID, response.getId());
         assertEquals(NOME, response.getName());
         assertEquals(EMAIL, response.getEmail());
+    }
+
+    @Test
+    void whenFinDyIdThenReturnAnObjectNotFoundException(){
+        when(repository.findById(anyInt())).thenThrow(new ObjectNotFoundException("Objeto não encontrado"));
+
+        try{
+            service.findById(ID);
+        }catch (Exception ex){
+            assertEquals(ObjectNotFoundException.class, ex.getClass());
+            assertEquals("Objeto não encontrado", ex.getMessage());
+        }
     }
 
     @Test
